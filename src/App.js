@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { articlesList } from './constants';
+
 function App() {
   return (
     <div className="App">
@@ -30,73 +32,19 @@ function App() {
             <h1>Articles List</h1>
           </Col>
         </Row>
+
         <Row>
-          <Col>
-            <div>
-              <h3>Article #1 Title</h3>
-              <span>Category #1</span>
-              <span>Category #2</span>
-              <p>21.01.2024</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                dictum leo ipsum, eget tincidunt nulla suscipit in. In varius
-                semper felis blandit posuere. Donec consequat mi velit, a
-                gravida mi porta eu. Suspendisse blandit, nulla ullamcorper
-                rutrum facilisis, sem augue cursus nulla, nec sodales tortor
-                odio id mi. Integer condimentum turpis vitae quam feugiat, sed
-                condimentum lorem iaculis. Cras volutpat odio neque, a placerat
-                lacus semper a. Integer commodo nisl et mi lobortis, sed dictum
-                leo maximus. Duis posuere felis at justo commodo, ac finibus
-                eros varius. Pellentesque vitae diam non nisl condimentum porta
-                molestie ut odio. Etiam nec lacinia metus. In non quam aliquet
-                nisi porttitor cursus in ac mauris. Cras sed metus orci. Sed
-                commodo augue in purus congue, eu fringilla enim lacinia. Nulla
-                fermentum, ex vitae vestibulum tempus, libero ipsum consequat
-                est, a varius elit quam a lorem. Mauris ultricies massa quis
-                tristique placerat.
-              </p>
-            </div>
-          </Col>
+          {articlesList.map((article, index) => (
+            <Col key={index}>
+              <h2>{article.title}</h2>
 
-          <Col>
-            <div>
-              <h3>Article #2 Title</h3>
-              <span>Category #1</span>
-              <span>Category #2</span>
-              <p>21.01.2024</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                dictum leo ipsum, eget tincidunt nulla suscipit in. In varius
-                semper felis blandit posuere. Donec consequat mi velit, a
-                gravida mi porta eu. Suspendisse blandit, nulla ullamcorper
-                rutrum facilisis, sem augue cursus nulla, nec sodales tortor
-                odio id mi. Integer condimentum turpis vitae quam feugiat, sed
-                condimentum lorem iaculis. Cras volutpat odio neque, a placerat
-                lacus semper a. Integer commodo nisl et mi lobortis, sed dictum
-                leo maximus.
-              </p>
-            </div>
-          </Col>
-
-          <Col>
-            <div>
-              <h3>Article #3 Title</h3>
-              <span>Category #1</span>
-              <span>Category #2</span>
-              <p>21.01.2024</p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                dictum leo ipsum, eget tincidunt nulla suscipit in. In varius
-                semper felis blandit posuere. Donec consequat mi velit, a
-                gravida mi porta eu. Suspendisse blandit, nulla ullamcorper
-                rutrum facilisis, sem augue cursus nulla, nec sodales tortor
-                odio id mi. Integer condimentum turpis vitae quam feugiat, sed
-                condimentum lorem iaculis. Cras volutpat odio neque, a placerat
-                lacus semper a. Integer commodo nisl et mi lobortis, sed dictum
-                leo maximus.
-              </p>
-            </div>
-          </Col>
+              {article.metatags.map((metatag, index) => (
+                <span key={index}>{metatag}</span>
+              ))}
+              <p>{article.date}</p>
+              <p>{article.content}</p>
+            </Col>
+          ))}
         </Row>
       </Container>
     </div>
