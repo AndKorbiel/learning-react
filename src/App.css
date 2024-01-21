@@ -1,31 +1,14 @@
 .App {
-  text-align: center;
+  background-color: rgb(37, 37, 37);
+  height: 100vh;
+  color: white;
 }
 
-.TopBar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding: 0 15px;
-  background: #ededed;
-  box-shadow: 2px 1px 5px #8d8d8d;
-
-  .Menu {
-    display: flex;
-
-    p {
-      margin: auto 10px;
-    }
-  }
+.MainContainer {
+  margin-top: 2em;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 1280px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+.RowTitle {
+  margin-bottom: 1em;
+  border-bottom: 1px solid grey;
 }
