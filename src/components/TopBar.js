@@ -1,8 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
+import { Container, Navbar, Button } from 'react-bootstrap';
 
-export function TopBar() {
+export function TopBar({ setActiveView }) {
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
@@ -10,11 +8,17 @@ export function TopBar() {
         <Navbar.Toggle />
 
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text style={{ marginRight: '1em' }}>
-            PrimaryArticles List
-          </Navbar.Text>
+          <Button
+            variant="link"
+            onClick={() => setActiveView('list')}
+            style={{ marginRight: '1em' }}
+          >
+            Articles List
+          </Button>
 
-          <Button variant="primary">Add New Article</Button>
+          <Button variant="primary" onClick={() => setActiveView('form')}>
+            Add New Article
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

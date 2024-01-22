@@ -1,34 +1,34 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
 
 import { articlesList } from './constants';
-import { Article } from './components/Article';
-import { TopBar } from './components/TopBar';
-import { ArticleForm } from './components/ArticleForm';
+import { Article, ArticleForm, TopBar } from './components/';
 
 function App() {
+  const [activeView, setActiveView] = useState('list');
+
   return (
     <div className="App">
-      <TopBar />
+      <TopBar setActiveView={setActiveView} />
 
       <Container className="MainContainer">
         <Row className="RowTitle">
           <Col>
-            <h1>Articles List</h1>
+            <h1>
+              {activeView === 'list' ? 'Articles List' : 'Add New Article'}
+            </h1>
           </Col>
         </Row>
 
         <Row>
-          <ArticleForm />
-        </Row>
+          {activeView === 'list' &&
+            articlesList.map((article, index) => (
+              <Article article={article} key={index} />
+            ))}
 
-        <Row>
-          {articlesList.map((article, index) => (
-            <Article article={article} key={index} />
-          ))}
+          {activeView === 'form' && <ArticleForm />}
         </Row>
       </Container>
     </div>
