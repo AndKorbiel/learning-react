@@ -19,6 +19,14 @@ export function TopBar({ setActiveView }) {
           <Button variant="primary" onClick={() => setActiveView('form')}>
             Add New Article
           </Button>
+
+          <Button
+            variant="link"
+            onClick={() => setActiveView('users')}
+            style={{ marginLeft: '1em' }}
+          >
+            Users List
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

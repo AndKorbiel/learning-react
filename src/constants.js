@@ -21,3 +21,10 @@ export const articlesList = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum leo ipsum, eget tincidunt nulla suscipit in. In varius semper felis blandit posuere. Donec consequat mi velit, a gravida mi porta eu. Suspendisse blandit, nulla ullamcorper rutrum facilisis, sem augue cursus nulla, nec sodales tortor odio id mi. Integer condimentum turpis vitae quam feugiat, sed condimentum lorem iaculis. Cras volutpat odio neque, a placerat lacus semper a. Integer commodo nisl et mi lobortis, sed dictum leo maximus. ',
   },
 ];
+
+export const usersList = [
+  { id: 1, firstName: 'John', lastName: 'Doe', userName: 'John Doe' },
+  { id: 2, firstName: 'Chris', lastName: 'Smith', userName: 'Mastet' },
+  { id: 3, firstName: 'Jane', lastName: 'Kowalski', userName: 'Mr. Fantasic' },
+  { id: 4, firstName: 'Jacob', lastName: 'Perry', userName: 'Jacob' },
+];
