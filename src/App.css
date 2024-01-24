@@ -12,3 +12,12 @@
   margin-bottom: 1em;
   border-bottom: 1px solid grey;
 }
+
+.clearFilters {
+  display: flex;
+  margin-top: 1em;
+  border: 1px solid white;
+  place-content: baseline center;
+  padding: 5px 10px;
+  border-radius: 4px;
+}

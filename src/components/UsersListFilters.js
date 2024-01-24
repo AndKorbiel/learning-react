@@ -1,20 +1,33 @@
 import { useState } from 'react';
-import { Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, CloseButton } from 'react-bootstrap';
 
 export const UsersListFilters = ({ setActiveFilters }) => {
-  const [filtersValues, setFiltersValues] = useState({
+  const initialState = {
     userName: '',
-  });
+    isFilterActive: false,
+  };
+
+  const [filtersValues, setFiltersValues] = useState(initialState);
 
   const handleOnChange = (e) => {
-    setFiltersValues((state) => ({
-      ...state,
-      [e.target.name]: e.target.value,
-    }));
+    e.target.value &&
+      setFiltersValues((state) => ({
+        ...state,
+        [e.target.name]: e.target.value,
+      }));
   };
 
   const onSubmit = () => {
-    setActiveFilters(filtersValues);
+    setFiltersValues((state) => ({
+      ...state,
+      isFilterActive: true,
+    }));
+    setActiveFilters({ userName: filtersValues.userName });
+  };
+
+  const handleClearFilters = () => {
+    setActiveFilters({ userName: '' });
+    setFiltersValues(initialState);
   };
 
   return (
@@ -40,6 +53,17 @@ export const UsersListFilters = ({ setActiveFilters }) => {
           </Col>
         </Row>
       </Form>
+
+      {filtersValues.isFilterActive && (
+        <Col xl="2" className="clearFilters">
+          <Form.Label style={{ marginBottom: 0 }}>Clear Filters</Form.Label>
+          <CloseButton
+            variant="white"
+            style={{ marginLeft: '1em' }}
+            onClick={() => handleClearFilters()}
+          />
+        </Col>
+      )}
     </Col>
   );
 };
