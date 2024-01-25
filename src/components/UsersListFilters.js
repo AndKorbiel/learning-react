@@ -3,18 +3,21 @@ import { Button, Form, Row, Col, CloseButton } from 'react-bootstrap';
 
 export const UsersListFilters = ({ setActiveFilters }) => {
   const initialState = {
+    id: '',
+    firstName: '',
+    lastName: '',
     userName: '',
     isFilterActive: false,
   };
 
   const [filtersValues, setFiltersValues] = useState(initialState);
+  const { firstName, id, lastName, userName } = filtersValues;
 
   const handleOnChange = (e) => {
-    e.target.value &&
-      setFiltersValues((state) => ({
-        ...state,
-        [e.target.name]: e.target.value,
-      }));
+    setFiltersValues((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const onSubmit = () => {
@@ -22,11 +25,22 @@ export const UsersListFilters = ({ setActiveFilters }) => {
       ...state,
       isFilterActive: true,
     }));
-    setActiveFilters({ userName: filtersValues.userName });
+
+    setActiveFilters({
+      id,
+      firstName,
+      lastName,
+      userName,
+    });
   };
 
   const handleClearFilters = () => {
-    setActiveFilters({ userName: '' });
+    setActiveFilters({
+      id: '',
+      firstName: '',
+      lastName: '',
+      userName: '',
+    });
     setFiltersValues(initialState);
   };
 
@@ -36,9 +50,33 @@ export const UsersListFilters = ({ setActiveFilters }) => {
         <Row>
           <Col>
             <Form.Control
+              placeholder="Search for User ID"
+              name="id"
+              value={id}
+              onChange={(e) => handleOnChange(e)}
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              placeholder="Search for First Name"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => handleOnChange(e)}
+            />
+          </Col>
+          <Col>
+            <Form.Control
+              placeholder="Search for Last Name"
+              name="lastName"
+              value={lastName}
+              onChange={(e) => handleOnChange(e)}
+            />
+          </Col>
+          <Col>
+            <Form.Control
               placeholder="Search for User Name"
               name="userName"
-              value={filtersValues.userName}
+              value={userName}
               onChange={(e) => handleOnChange(e)}
             />
           </Col>

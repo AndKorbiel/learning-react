@@ -7,15 +7,31 @@ import { UsersListFilters } from './UsersListFilters';
 export const UsersList = () => {
   const [users] = useState(usersList);
   const [activeFilters, setActiveFilters] = useState({
+    id: '',
+    firstName: '',
+    lastName: '',
     userName: '',
   });
 
   const tableHeader = ['ID', 'First Name', 'Last Name', 'Username'];
 
   const filteredUsers = useMemo(() => {
-    return users.filter((user) =>
-      user.userName.includes(activeFilters.userName),
-    );
+    return users.filter((user) => {
+      const { firstName, id, lastName, userName } = user;
+      const {
+        firstName: filterFirstName,
+        id: filterId,
+        lastName: filterLastName,
+        userName: filterUserName,
+      } = activeFilters;
+
+      return (
+        (filterId ? id.toString() === filterId : user) &&
+        firstName.includes(filterFirstName) &&
+        lastName.includes(filterLastName) &&
+        userName.includes(filterUserName)
+      );
+    });
   }, [activeFilters, users]);
 
   return (
@@ -31,12 +47,12 @@ export const UsersList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.userName}</td>
+          {filteredUsers.map(({ firstName, id, lastName, userName }) => (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{firstName}</td>
+              <td>{lastName}</td>
+              <td>{userName}</td>
             </tr>
           ))}
         </tbody>
