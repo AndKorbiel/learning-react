@@ -1,15 +1,24 @@
-import Col from 'react-bootstrap/Col';
+import { Col, Image } from 'react-bootstrap';
+import defaultImage from '../assets/default_image.png';
 
 export const Article = ({ article }) => {
+  const { content, date, img, metatags, title } = article;
+
   return (
     <Col>
-      <h2>{article.title}</h2>
+      <Image
+        src={img !== '' ? img : defaultImage}
+        alt="thumbnail"
+        className="thumbnail-img"
+      />
+      <h2>{title}</h2>
 
-      {article.metatags.map((metatag, index) => (
+      {metatags.map((metatag, index) => (
         <span key={index}>{metatag}</span>
       ))}
-      <p>{article.date}</p>
-      <p>{article.content}</p>
+
+      <p>{date}</p>
+      <p>{content}</p>
     </Col>
   );
 };

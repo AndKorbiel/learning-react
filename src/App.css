@@ -1,23 +1,29 @@
 .App {
   background-color: rgb(37, 37, 37);
-  height: 100vh;
+  min-height: 100vh;
   color: white;
 }
 
-.MainContainer {
+.main-container {
   margin-top: 2em;
 }
 
-.RowTitle {
+.row-title {
   margin-bottom: 1em;
   border-bottom: 1px solid grey;
 }
 
-.clearFilters {
+.clear-filters {
   display: flex;
   margin-top: 1em;
   border: 1px solid white;
   place-content: baseline center;
   padding: 5px 10px;
   border-radius: 4px;
+}
+
+.thumbnail-img {
+  width: 100%;
+  max-height: 250px;
+  margin-bottom: 1em;
 }

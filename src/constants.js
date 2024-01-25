@@ -1,6 +1,7 @@
 export const articlesList = [
   {
     title: 'Article #1 Title',
+    img: '',
     metatags: ['Category #1'],
     date: '21.01.2024',
     content:
@@ -8,6 +9,7 @@ export const articlesList = [
   },
   {
     title: 'Article #2 Title',
+    img: '',
     metatags: ['Category #2'],
     date: '20.01.2024',
     content:
@@ -15,6 +17,7 @@ export const articlesList = [
   },
   {
     title: 'Article #3 Title',
+    img: '',
     metatags: ['Category #1'],
     date: '12.12.2023',
     content:

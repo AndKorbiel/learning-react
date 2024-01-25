@@ -93,7 +93,7 @@ export const UsersListFilters = ({ setActiveFilters }) => {
       </Form>
 
       {filtersValues.isFilterActive && (
-        <Col xl="2" className="clearFilters">
+        <Col xl="2" className="clear-filters">
           <Form.Label style={{ marginBottom: 0 }}>Clear Filters</Form.Label>
           <CloseButton
             variant="white"
