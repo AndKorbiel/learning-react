@@ -1,14 +1,14 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import { articlesList } from './constants';
+import { useFetchArticles } from './hooks';
 import { Article, ArticleForm, TopBar, UsersList } from './components/';
 
 function App() {
   const [activeView, setActiveView] = useState('list');
-  const [articles, setArticles] = useState(articlesList);
+  const { articles } = useFetchArticles();
 
   const PageName = (activeView) => {
     switch (activeView) {
@@ -22,39 +22,6 @@ function App() {
         return 'Not found';
     }
   };
-
-  function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
-  const addImagesToArticles = useCallback(
-    (images) => {
-      const articlesData = articles.map((article, index) => ({
-        ...article,
-        img: images[index].download_url,
-      }));
-
-      setArticles(articlesData);
-    },
-    [articles],
-  );
-
-  useEffect(() => {
-    async function init() {
-      try {
-        const randomPageNumber = randomIntFromInterval(1, 10);
-        const res = await fetch(
-          `https://picsum.photos/v2/list?page=${randomPageNumber}&limit=10`,
-        );
-        const data = await res.json();
-        addImagesToArticles(data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
-
-    init();
-  }, []);
 
   return (
     <div className="App">
