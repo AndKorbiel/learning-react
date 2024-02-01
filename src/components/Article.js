@@ -5,7 +5,7 @@ export const Article = ({ article }) => {
   const { content, date, img, metatags, title } = article;
 
   return (
-    <Col>
+    <Col lg="3" style={{ marginBottom: '1em' }}>
       <Image
         src={img !== '' ? img : defaultImage}
         alt="thumbnail"

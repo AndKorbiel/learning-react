@@ -8,7 +8,8 @@ import { Article, ArticleForm, TopBar, UsersList } from './components/';
 
 function App() {
   const [activeView, setActiveView] = useState('list');
-  const { areArticlesLoading, articles, error } = useFetchArticles();
+  const { areArticlesLoading, articles, error, addNewArticle } =
+    useFetchArticles();
 
   const PageName = (activeView) => {
     switch (activeView) {
@@ -61,7 +62,9 @@ function App() {
 
         <Row>
           {activeView === 'list' && renderArticlesList()}
-          {activeView === 'form' && <ArticleForm />}
+          {activeView === 'form' && (
+            <ArticleForm addNewArticle={addNewArticle} />
+          )}
           {activeView === 'users' && <UsersList />}
         </Row>
       </Container>

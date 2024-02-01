@@ -20,27 +20,49 @@ export const useFetchArticles = () => {
     [articles],
   );
 
+  async function fetchImages(limit) {
+    try {
+      setLoading(true);
+      const randomPageNumber = randomIntFromInterval(1, 10);
+      const res = await fetch(
+        `https://picsum.photos/v2/list?page=${randomPageNumber}&limit=${limit}`,
+      );
+
+      const data = await res.json();
+      return data;
+    } catch (e) {
+      console.log(e);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const addNewArticle = async (newArticle) => {
+    const data = await fetchImages(1);
+    const today = new Date().toLocaleDateString().slice(0, 10);
+    const dateFormatted = today.replaceAll('-', '.');
+
+    const newArticleWithImage = {
+      ...newArticle,
+      date: dateFormatted,
+      img: data[0].download_url,
+    };
+
+    console.log(newArticleWithImage);
+
+    setArticles((articles) => [...articles, newArticleWithImage]);
+  };
+
   useEffect(() => {
     async function init() {
-      try {
-        setLoading(true);
-        const randomPageNumber = randomIntFromInterval(1, 10);
-        const res = await fetch(
-          `https://picsum.photos/v2/list?page=${randomPageNumber}&limit=10`,
-        );
+      const data = await fetchImages(10);
 
-        const data = await res.json();
-        addImagesToArticles(data);
-      } catch (e) {
-        console.log(e);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
+      addImagesToArticles(data);
     }
 
     init();
   }, []);
 
-  return { areArticlesLoading, articles, error };
+  return { areArticlesLoading, articles, error, addNewArticle };
 };

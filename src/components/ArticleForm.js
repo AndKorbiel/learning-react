@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 
-export const ArticleForm = () => {
+export const ArticleForm = ({ addNewArticle }) => {
   const initalState = {
     title: '',
     content: '',
-    category: '',
+    metatags: [],
   };
 
   const [newArticle, setNewArticle] = useState(initalState);
@@ -13,14 +13,11 @@ export const ArticleForm = () => {
   const [articleSubmited, setArticleSubmited] = useState(false);
 
   const onSubmit = () => {
-    if (
-      !!newArticle.category &&
-      !!newArticle.content &&
-      !!newArticle.category
-    ) {
+    if (!!newArticle.title && !!newArticle.content && !!newArticle.metatags) {
       setArticleSubmited(true);
       setNewArticle(initalState);
       setValidated(false);
+      addNewArticle(newArticle);
     } else {
       setValidated(true);
     }
@@ -69,10 +66,13 @@ export const ArticleForm = () => {
           <Form.Label>Select Article Category</Form.Label>
           <Form.Select
             onChange={(e) =>
-              setNewArticle((state) => ({ ...state, category: e.target.value }))
+              setNewArticle((state) => ({
+                ...state,
+                metatags: [e.target.value],
+              }))
             }
             required
-            value={newArticle.category}
+            value={newArticle.metatags[0]}
           >
             <option value="">Select Category...</option>
             <option value="Category #1">Category #1</option>
