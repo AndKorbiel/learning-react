@@ -1,10 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
-import { useState } from 'react';
+import { createContext, useState, React } from 'react';
 
 import { useFetchArticles } from './hooks';
 import { Article, ArticleForm, TopBar, UsersList } from './components/';
+
+export const ArticleContext = createContext(null);
 
 function App() {
   const [activeView, setActiveView] = useState('list');
@@ -42,32 +44,32 @@ function App() {
 
   return (
     <div className="App">
-      <TopBar setActiveView={setActiveView} />
+      <ArticleContext.Provider value={{ addNewArticle }}>
+        <TopBar setActiveView={setActiveView} />
 
-      <Container className="main-container">
-        <Row className="row-title">
-          <Col>
-            <h1>
-              {PageName(activeView)}
-              {areArticlesLoading && (
-                <Spinner
-                  animation="border"
-                  role="status"
-                  style={{ marginLeft: '0.5em' }}
-                />
-              )}
-            </h1>
-          </Col>
-        </Row>
+        <Container className="main-container">
+          <Row className="row-title">
+            <Col>
+              <h1>
+                {PageName(activeView)}
+                {areArticlesLoading && (
+                  <Spinner
+                    animation="border"
+                    role="status"
+                    style={{ marginLeft: '0.5em' }}
+                  />
+                )}
+              </h1>
+            </Col>
+          </Row>
 
-        <Row>
-          {activeView === 'list' && renderArticlesList()}
-          {activeView === 'form' && (
-            <ArticleForm addNewArticle={addNewArticle} />
-          )}
-          {activeView === 'users' && <UsersList />}
-        </Row>
-      </Container>
+          <Row>
+            {activeView === 'list' && renderArticlesList()}
+            {activeView === 'form' && <ArticleForm />}
+            {activeView === 'users' && <UsersList />}
+          </Row>
+        </Container>
+      </ArticleContext.Provider>
     </div>
   );
 }

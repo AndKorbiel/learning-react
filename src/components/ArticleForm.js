@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useContext, useState, React } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 
-export const ArticleForm = ({ addNewArticle }) => {
+import { ArticleContext } from '../App';
+
+export const ArticleForm = () => {
   const initalState = {
     title: '',
     content: '',
     metatags: [],
   };
+
+  const { addNewArticle } = useContext(ArticleContext);
 
   const [newArticle, setNewArticle] = useState(initalState);
   const [validated, setValidated] = useState(false);
