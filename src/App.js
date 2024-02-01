@@ -1,12 +1,10 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
-import { createContext, useState, React } from 'react';
+import { useState, React } from 'react';
 
-import { useFetchArticles } from './hooks';
+import { useFetchArticles, ArticleContextProvider } from './hooks';
 import { Article, ArticleForm, TopBar, UsersList } from './components/';
-
-export const ArticleContext = createContext(null);
 
 function App() {
   const [activeView, setActiveView] = useState('list');
@@ -44,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <ArticleContext.Provider value={{ addNewArticle }}>
+      <ArticleContextProvider initValue={addNewArticle}>
         <TopBar setActiveView={setActiveView} />
 
         <Container className="main-container">
@@ -69,7 +67,7 @@ function App() {
             {activeView === 'users' && <UsersList />}
           </Row>
         </Container>
-      </ArticleContext.Provider>
+      </ArticleContextProvider>
     </div>
   );
 }

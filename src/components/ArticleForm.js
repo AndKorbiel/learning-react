@@ -1,7 +1,7 @@
-import { useContext, useState, React } from 'react';
+import { useState, React } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 
-import { ArticleContext } from '../App';
+import { useArticleContext } from '../hooks';
 
 export const ArticleForm = () => {
   const initalState = {
@@ -10,7 +10,7 @@ export const ArticleForm = () => {
     metatags: [],
   };
 
-  const { addNewArticle } = useContext(ArticleContext);
+  const callbackFromContext = useArticleContext();
 
   const [newArticle, setNewArticle] = useState(initalState);
   const [validated, setValidated] = useState(false);
@@ -21,7 +21,7 @@ export const ArticleForm = () => {
       setArticleSubmited(true);
       setNewArticle(initalState);
       setValidated(false);
-      addNewArticle(newArticle);
+      callbackFromContext(newArticle);
     } else {
       setValidated(true);
     }
