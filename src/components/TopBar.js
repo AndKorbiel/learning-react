@@ -1,6 +1,9 @@
-import { Container, Navbar, Button } from 'react-bootstrap';
+import { Container, Navbar, Button, NavbarText } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 export function TopBar({ setActiveView }) {
+  const { isLoggedIn } = useSelector((state) => state);
+
   return (
     <Navbar className="bg-body-tertiary">
       <Container>
@@ -27,6 +30,10 @@ export function TopBar({ setActiveView }) {
           >
             Users List
           </Button>
+
+          <NavbarText className="navbar-user-status">
+            {isLoggedIn ? 'Logged in' : 'Not logged in'}
+          </NavbarText>
         </Navbar.Collapse>
       </Container>
     </Navbar>

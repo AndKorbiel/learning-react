@@ -1,0 +1,1 @@
+export const SET_USER_LOG_STATUS = 'SET_USER_LOG_STATUS';
