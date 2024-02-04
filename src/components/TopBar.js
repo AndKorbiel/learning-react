@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { LoginModal } from './LogiModal';
 
 export function TopBar({ setActiveView }) {
-  const { isLoggedIn } = useSelector((state) => state);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   return (
     <Navbar className="bg-body-tertiary">
@@ -36,7 +36,7 @@ export function TopBar({ setActiveView }) {
 
           <NavbarText className="navbar-user-status">
             {isLoggedIn ? (
-              'Logged in'
+              'User logged in'
             ) : (
               <>
                 <span style={{ marginRight: '0.5em' }}>User not logged in</span>

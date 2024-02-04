@@ -1,17 +1,31 @@
 import { useState, React } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { SET_USER_LOG_STATUS } from '../state/actions';
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const initalState = {
     userName: '',
     userPass: '',
   };
 
+  const userName = useSelector((state) => state.userName);
+  const userPassword = useSelector((state) => state.userPassword);
+
   const [loginData, setLoginData] = useState(initalState);
   const [validated, setValidated] = useState(false);
 
   const onSubmit = () => {
-    setValidated(true);
+    const { userName: givenUserName, userPass: givenUserPass } = loginData;
+
+    if (givenUserName === userName && givenUserPass === userPassword) {
+      setValidated(false);
+      dispatch({ type: SET_USER_LOG_STATUS });
+    } else {
+      setValidated(true);
+    }
   };
 
   return (

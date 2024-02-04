@@ -14,7 +14,7 @@ import {
 import { useSelector } from 'react-redux';
 
 function App() {
-  const { isLoggedIn } = useSelector((state) => state);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [activeView, setActiveView] = useState('list');
   const { areArticlesLoading, articles, error, addNewArticle } =
     useFetchArticles();
@@ -71,11 +71,8 @@ function App() {
 
           <Row>
             {activeView === 'list' && renderArticlesList()}
-            {activeView === 'form' && isLoggedIn ? (
-              <ArticleForm />
-            ) : (
-              <AccessDenined />
-            )}
+            {activeView === 'form' &&
+              (isLoggedIn ? <ArticleForm /> : <AccessDenined />)}
             {activeView === 'users' && <UsersList />}
           </Row>
         </Container>
