@@ -4,9 +4,17 @@ import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { useState, React } from 'react';
 
 import { useFetchArticles, ArticleContextProvider } from './hooks';
-import { Article, ArticleForm, TopBar, UsersList } from './components/';
+import {
+  AccessDenined,
+  Article,
+  ArticleForm,
+  TopBar,
+  UsersList,
+} from './components/';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const { isLoggedIn } = useSelector((state) => state);
   const [activeView, setActiveView] = useState('list');
   const { areArticlesLoading, articles, error, addNewArticle } =
     useFetchArticles();
@@ -63,7 +71,11 @@ function App() {
 
           <Row>
             {activeView === 'list' && renderArticlesList()}
-            {activeView === 'form' && <ArticleForm />}
+            {activeView === 'form' && isLoggedIn ? (
+              <ArticleForm />
+            ) : (
+              <AccessDenined />
+            )}
             {activeView === 'users' && <UsersList />}
           </Row>
         </Container>

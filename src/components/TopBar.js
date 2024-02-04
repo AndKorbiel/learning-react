@@ -1,5 +1,6 @@
 import { Container, Navbar, Button, NavbarText } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { LoginModal } from './LogiModal';
 
 export function TopBar({ setActiveView }) {
   const { isLoggedIn } = useSelector((state) => state);
@@ -23,16 +24,25 @@ export function TopBar({ setActiveView }) {
             Add New Article
           </Button>
 
-          <Button
-            variant="link"
-            onClick={() => setActiveView('users')}
-            style={{ marginLeft: '1em' }}
-          >
-            Users List
-          </Button>
+          {isLoggedIn && (
+            <Button
+              variant="link"
+              onClick={() => setActiveView('users')}
+              style={{ marginLeft: '1em' }}
+            >
+              Users List
+            </Button>
+          )}
 
           <NavbarText className="navbar-user-status">
-            {isLoggedIn ? 'Logged in' : 'Not logged in'}
+            {isLoggedIn ? (
+              'Logged in'
+            ) : (
+              <>
+                <span style={{ marginRight: '0.5em' }}>User not logged in</span>
+                <LoginModal variant={'secondary'} />
+              </>
+            )}
           </NavbarText>
         </Navbar.Collapse>
       </Container>

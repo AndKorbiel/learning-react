@@ -31,5 +31,6 @@
 .navbar-user-status {
   border-left: 1px solid #343a40;
   padding-left: 1em;
+  margin-left: 1em;
   font-weight: bold;
 }
