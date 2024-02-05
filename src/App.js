@@ -3,7 +3,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { useState, React } from 'react';
 
-import { useFetchArticles, ArticleContextProvider } from './hooks';
+import {
+  useFetchArticles,
+  ArticleContextProvider,
+  useWelcomeAlert,
+} from './hooks';
 import {
   AccessDenined,
   Article,
@@ -18,6 +22,8 @@ function App() {
   const [activeView, setActiveView] = useState('list');
   const { areArticlesLoading, articles, error, addNewArticle } =
     useFetchArticles();
+
+  const { WelcomeAlert } = useWelcomeAlert();
 
   const PageName = (activeView) => {
     switch (activeView) {
@@ -54,6 +60,8 @@ function App() {
         <TopBar setActiveView={setActiveView} />
 
         <Container className="main-container">
+          {WelcomeAlert}
+
           <Row className="row-title">
             <Col>
               <h1>
