@@ -11,7 +11,7 @@ export const LoginModal = ({ variant }) => {
   return (
     <>
       <Button variant={variant ?? 'primary'} onClick={handleShow}>
-        Click to Log in
+        Log in
       </Button>
 
       <Modal centered show={show} onHide={handleClose}>

@@ -2,7 +2,7 @@ import { useState, React } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SET_USER_LOG_STATUS } from '../state/actions';
+import { setUserLogStatus } from '../state/actions';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ export const LoginForm = () => {
 
     if (givenUserName === userName && givenUserPass === userPassword) {
       setValidated(false);
-      dispatch({ type: SET_USER_LOG_STATUS });
+      dispatch(setUserLogStatus(true));
     } else {
       setValidated(true);
     }

@@ -1,9 +1,16 @@
 import { Container, Navbar, Button, NavbarText } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LoginModal } from './LogiModal';
+import { setUserLogStatus } from '../state/actions';
 
 export function TopBar({ setActiveView }) {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  const handleLogOut = () => {
+    setActiveView('list');
+    dispatch(setUserLogStatus(false));
+  };
 
   return (
     <Navbar className="bg-body-tertiary">
@@ -36,7 +43,12 @@ export function TopBar({ setActiveView }) {
 
           <NavbarText className="navbar-user-status">
             {isLoggedIn ? (
-              'User logged in'
+              <>
+                <span style={{ marginRight: '0.5em' }}>User logged in</span>
+                <Button variant="danger" onClick={() => handleLogOut()}>
+                  Log out
+                </Button>
+              </>
             ) : (
               <>
                 <span style={{ marginRight: '0.5em' }}>User not logged in</span>

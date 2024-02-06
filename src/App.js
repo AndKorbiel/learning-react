@@ -1,7 +1,7 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
-import { useState, React } from 'react';
+import { useState } from 'react';
 
 import {
   useFetchArticles,
@@ -23,7 +23,7 @@ function App() {
   const { areArticlesLoading, articles, error, addNewArticle } =
     useFetchArticles();
 
-  const { WelcomeAlert } = useWelcomeAlert();
+  const { renderAlert } = useWelcomeAlert();
 
   const PageName = (activeView) => {
     switch (activeView) {
@@ -60,7 +60,7 @@ function App() {
         <TopBar setActiveView={setActiveView} />
 
         <Container className="main-container">
-          {WelcomeAlert}
+          {renderAlert}
 
           <Row className="row-title">
             <Col>

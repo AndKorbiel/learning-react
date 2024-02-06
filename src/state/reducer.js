@@ -9,7 +9,7 @@ export const initialState = {
 export const mainReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_LOG_STATUS:
-      return { ...state, isLoggedIn: true };
+      return { ...state, isLoggedIn: action.payload };
 
     default:
       return state;
