@@ -2,10 +2,12 @@ import { Container, Navbar, Button, NavbarText } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginModal } from './LogiModal';
 import { setUserLogStatus } from '../state/actions';
+import { useShowUserData } from '../hooks';
 
 export function TopBar({ setActiveView }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const { rednerUserData } = useShowUserData();
 
   const handleLogOut = () => {
     setActiveView('list');
@@ -48,6 +50,7 @@ export function TopBar({ setActiveView }) {
                 <Button variant="danger" onClick={() => handleLogOut()}>
                   Log out
                 </Button>
+                {rednerUserData}
               </>
             ) : (
               <>

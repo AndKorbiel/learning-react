@@ -34,3 +34,19 @@
   margin-left: 1em;
   font-weight: bold;
 }
+
+.offcanvas.show:not(.hiding).user-data {
+  background-color: rgb(37, 37, 37);
+  min-height: 100vh;
+  color: white;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid #575757;
+}
+
+.offcanvas-body .list-group-item {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #494949;
+}

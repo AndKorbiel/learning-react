@@ -2,6 +2,8 @@ import { SET_USER_LOG_STATUS } from './actions';
 
 export const initialState = {
   userName: 'admin',
+  userEmail: 'admin@test.net',
+  userId: 1,
   userPassword: '1234',
   isLoggedIn: false,
 };
