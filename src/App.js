@@ -18,7 +18,7 @@ import {
 import { useSelector } from 'react-redux';
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const [activeView, setActiveView] = useState('list');
   const { areArticlesLoading, articles, error, addNewArticle } =
     useFetchArticles();

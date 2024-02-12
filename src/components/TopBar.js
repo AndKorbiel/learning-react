@@ -1,12 +1,12 @@
 import { Container, Navbar, Button, NavbarText } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginModal } from './LogiModal';
-import { setUserLogStatus } from '../state/actions';
 import { useShowUserData } from '../hooks';
+import { setUserLogStatus } from '../state/userSlice';
 
 export function TopBar({ setActiveView }) {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const { rednerUserData } = useShowUserData();
 
   const handleLogOut = () => {

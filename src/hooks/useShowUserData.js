@@ -6,10 +6,10 @@ export const useShowUserData = () => {
   const [show, setShow] = useState(false);
   const { userEmail, userId, userName, userPassword } = useSelector(
     (state) => ({
-      userEmail: state.userEmail,
-      userId: state.userId,
-      userName: state.userName,
-      userPassword: state.userPassword,
+      userEmail: state.user.userEmail,
+      userId: state.user.userId,
+      userName: state.user.userName,
+      userPassword: state.user.userPassword,
     }),
   );
 

@@ -1,7 +1,9 @@
-import { createStore, compose } from 'redux';
-import { mainReducer } from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import userSlice from './userSlice';
 
-const composeEnhancers =
-  window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] || compose;
-
-export const store = createStore(mainReducer, composeEnhancers());
+export const store = configureStore({
+  devTools: true,
+  reducer: {
+    user: userSlice,
+  },
+});

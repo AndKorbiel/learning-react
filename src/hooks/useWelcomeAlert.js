@@ -3,7 +3,7 @@ import { Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 
 export const useWelcomeAlert = () => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
 
   useEffect(() => {

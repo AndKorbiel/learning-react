@@ -49,8 +49,6 @@ export const useFetchArticles = () => {
       img: data[0].download_url,
     };
 
-    console.log(newArticleWithImage);
-
     setArticles((articles) => [...articles, newArticleWithImage]);
   };
 

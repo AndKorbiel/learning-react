@@ -1,8 +1,7 @@
 import { useState, React } from 'react';
 import { Button, Form, Col, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { setUserLogStatus } from '../state/actions';
+import { setUserLogStatus } from '../state/userSlice';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -11,8 +10,7 @@ export const LoginForm = () => {
     userPass: '',
   };
 
-  const userName = useSelector((state) => state.userName);
-  const userPassword = useSelector((state) => state.userPassword);
+  const { userName, userPassword } = useSelector((state) => state.user);
 
   const [loginData, setLoginData] = useState(initalState);
   const [validated, setValidated] = useState(false);
